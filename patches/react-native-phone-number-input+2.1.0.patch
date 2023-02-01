@@ -1,0 +1,47 @@
+diff --git a/node_modules/react-native-phone-number-input/lib/index.js b/node_modules/react-native-phone-number-input/lib/index.js
+index b89c388..70d27e7 100644
+--- a/node_modules/react-native-phone-number-input/lib/index.js
++++ b/node_modules/react-native-phone-number-input/lib/index.js
+@@ -168,6 +168,7 @@ export default class PhoneInput extends PureComponent {
+             styles.container,
+             withShadow ? styles.shadow : {},
+             containerStyle ? containerStyle : {},
++            {width: '100%'}
+           ]}
+         >
+           <TouchableOpacity
+@@ -176,6 +177,7 @@ export default class PhoneInput extends PureComponent {
+               layout === "second" ? styles.flagButtonExtraWidth : {},
+               flagButtonStyle ? flagButtonStyle : {},
+               countryPickerButtonStyle ? countryPickerButtonStyle : {},
++              layout === "second"  ? {} : {borderBottomWidth: 1, borderBottomColor: '#F0F2F6', marginEnd: 20}
+             ]}
+             disabled={disabled}
+             onPress={() => this.setState({ modalVisible: true })}
+@@ -195,11 +197,9 @@ export default class PhoneInput extends PureComponent {
+               onClose={() => this.setState({ modalVisible: false })}
+               {...countryPickerProps}
+             />
+-            {code && layout === "second" && (
+               <Text
+                 style={[styles.codeText, codeTextStyle ? codeTextStyle : {}]}
+               >{`+${code}`}</Text>
+-            )}
+             {!disableArrowIcon && (
+               <React.Fragment>
+                 {renderDropdownImage
+@@ -212,13 +212,9 @@ export default class PhoneInput extends PureComponent {
+             style={[
+               styles.textContainer,
+               textContainerStyle ? textContainerStyle : {},
++              layout === "second"  ? {} : {borderBottomWidth: 1, borderBottomColor: '#F0F2F6', flexGrow: 1, display: 'flex'}
+             ]}
+           >
+-            {code && layout === "first" && (
+-              <Text
+-                style={[styles.codeText, codeTextStyle ? codeTextStyle : {}]}
+-              >{`+${code}`}</Text>
+-            )}
+             <TextInput
+               style={[styles.numberText, textInputStyle ? textInputStyle : {}]}
+               placeholder={placeholder ? placeholder : "Phone Number"}
